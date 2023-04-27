@@ -1,0 +1,67 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void registor();
+void login();
+
+vector<string> accounts;
+vector<string> passwords;
+
+int main() {
+    while (true) {
+        cout << "註冊(R) 或 登入(L)";
+        char option;
+        cin >> option;
+    
+        if (option == 'R') {
+            registor();
+        } else {
+            login();
+        }
+    }
+}
+
+void registor() {
+    cout << "請輸入帳號：";
+    string input_account;
+    cin >> input_account;
+    accounts.push_back(input_account);
+
+    cout << "請輸入密碼：";
+    string input_password;
+    cin >> input_password;
+    passwords.push_back(input_password);
+}
+
+void login() {
+    cout << "請輸入帳號：";
+    string login_account;
+    cin >> login_account;
+
+    cout << "請輸入密碼：";
+    string login_password;
+    cin >> login_password;
+
+    bool found = false;
+    int i;
+    for (i = 0; i < accounts.size(); i++) {
+        if (login_account == accounts[i] && login_password == passwords[i]) {
+            cout << "歡迎第" << i << "個使用者" << "\n";
+            found = true;
+            break;
+        }
+    }
+
+    char choice;
+    if (found == false) {
+        cout << "無效的帳號或密碼" << "\n";
+    } else {
+        cout << "是否要改密碼?(Y or N)";
+        cin >> choice;
+        if (choice == 'Y') {
+            cout << "輸入新密碼：";
+            cin >> passwords[i];
+        }
+    }
+}
