@@ -1,0 +1,98 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {    
+    int responce;
+    
+    string account, codeword;
+    vector<string> accounts;
+    vector<string> codewords;
+    
+    while (true) { 
+        int flag = 0;
+        //選擇功能
+        cout << "0 註冊帳號  1 登入帳號 2 修改密碼:";
+        cin >> responce;
+                
+        //註冊帳號
+        if (responce == 0){
+            cout << "註冊新帳號: ";
+            cin >> account;
+            if (accounts.size() > 0){
+                for (int i = 0; i <= accounts.size(); i ++){
+                    if (accounts[i] == account){
+                        cout << "帳號名稱重複" << endl;
+                        cout << "註冊新帳號: ";
+                        cin >> account;
+                        i = 0;
+                    }  
+                    else if (i == accounts.size()){
+                        accounts.push_back(account);
+                        cout << "設定密碼: ";
+                        cin >> codeword;
+                        codewords.push_back(codeword);
+                    }
+                }
+            } 
+            else {
+                accounts.push_back(account);
+                cout << "設定密碼: ";
+                cin >> codeword;
+                codewords.push_back(codeword);
+            }          
+        }
+        
+        //登入帳號
+        if (responce == 1){
+            cout << "輸入帳號: ";
+            cin >> account;
+            
+            for (int i = 0; i <= accounts.size(); i ++){
+                
+                if (accounts[i] == account){
+                    cout << "輸入密碼: ";
+                    cin >> codeword;
+                    if (codewords[i] == codeword){
+                        cout << "登入成功" << endl;
+                        break;
+                    }   
+                    else {
+                        cout << "密碼錯誤" << endl;
+                        break;
+                    }                    
+                }
+                else if(i == accounts.size()){
+                    cout << "帳號不存在" << endl;
+                }
+            }
+        }
+
+        //修改密碼
+        if (responce == 2){
+            cout << "輸入帳號: ";
+            cin >> account;
+            
+            for (int i = 0; i <= accounts.size(); i ++){
+                
+                if (accounts[i] == account){
+                    cout << "輸入密碼: ";
+                    cin >> codeword;
+                    if (codewords[i] == codeword){
+                        cout << "請輸入新的密碼: " << endl;
+                        cin >> codeword;
+                        codewords[i] = codeword;
+                        cout << "修改成功" << endl;
+                        break;
+                    }   
+                    else {
+                        cout << "密碼錯誤" << endl;
+                        break;
+                    }                    
+                }
+                else if(i == accounts.size()){
+                    cout << "帳號不存在" << endl;
+                }
+            }
+        }
+    }
+}
