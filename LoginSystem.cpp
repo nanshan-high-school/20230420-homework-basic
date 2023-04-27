@@ -20,9 +20,11 @@ int main() {
             registor();
         } else if (option == '2') {
             login();
-        } else {
+        } else if (option == '3') {
             change();
-        }       
+        } else {
+            cout << "無效的指令，請重新輸入：\n";
+        }
     }
 }
 
